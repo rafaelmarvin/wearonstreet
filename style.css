@@ -1,0 +1,485 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #000000;
+    --secondary-color: #ffffff;
+    --accent-color: #ff0000;
+    --border-color: #cccccc;
+    --text-color: #1a1a1a;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ==================== ANNOUNCEMENT BANNER ==================== */
+.announcement-banner {
+    background-color: var(--accent-color);
+    color: white;
+    text-align: center;
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+}
+
+/* ==================== NAVBAR ==================== */
+.navbar {
+    background-color: var(--primary-color);
+    padding: 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+    opacity: 0.7;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.cart-icon {
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.cart-icon:hover {
+    opacity: 0.7;
+}
+
+/* ==================== HERO SECTION ==================== */
+.hero {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.hero-title {
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    color: #000000;
+}
+
+.hero-description {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #666;
+    max-width: 500px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.btn {
+    padding: 12px 32px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #333;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-outline-white {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-outline-white:hover {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image img {
+    width: 550px;
+    height: 550px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ==================== CATALOG SECTION ==================== */
+.catalog {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    color: black;
+}
+
+.section-title {
+    font-size: 36px;
+    font-weight: 900;
+    margin-bottom: 48px;
+    letter-spacing: -1px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.product-card {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+}
+
+.product-image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    background-color: #f5f5f5;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
+}
+
+.product-name {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+}
+
+.product-category {
+    font-size: 11px;
+    color: #999;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.product-price {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* ==================== DISCOUNT SECTION ==================== */
+.discount-section {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 80px 40px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 40px;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    justify-items: center;
+}
+
+.discount-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.discount-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.discount-title {
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.discount-description {
+    font-size: 14px;
+    line-height: 1.8;
+    max-width: 600px;
+    opacity: 0.9;
+}
+
+/* ==================== TOUCHPOINT SECTION ==================== */
+.touchpoint {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    h2{
+        color: black;
+    }
+}
+
+.touchpoint-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.touchpoint-card,
+.contact-card {
+    border: 2px solid var(--border-color);
+    padding: 40px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 320px;
+}
+
+.touchpoint-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 24px;
+}
+
+.touchpoint-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-color);
+}
+
+.touchpoint-logo {
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.touchpoint-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-title {
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+    color: black;
+}
+
+.contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-item {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: background-color 0.3s;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.contact-item:hover {
+    background-color: #333;
+}
+
+.contact-icon {
+    font-size: 16px;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 1024px) {
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 60px 30px;
+        gap: 40px;
+    }
+
+    .hero-title {
+        font-size: 56px;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .discount-section {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .nav-container {
+        padding: 0 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-wrap: wrap;
+        padding: 0 20px;
+        gap: 20px;
+    }
+
+    .nav-links {
+        gap: 20px;
+        font-size: 11px;
+    }
+
+    .hero {
+        padding: 40px 20px;
+    }
+
+    .hero-title {
+        font-size: 42px;
+    }
+
+    .hero-buttons {
+        flex-wrap: wrap;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .touchpoint-container {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .catalog,
+    .touchpoint {
+        padding: 40px 20px;
+    }
+
+    .announcement-banner {
+        font-size: 11px;
+        padding: 10px 15px;
+    }
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content,
+.product-card,
+.discount-section,
+.touchpoint {
+    animation: fadeInUp 0.6s ease-out;
+}
