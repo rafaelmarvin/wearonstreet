@@ -85,25 +85,6 @@ productCards.forEach((card, index) => {
     });
 });
 
-// ==================== CONTACT ITEMS ==================== 
-const contactItems = document.querySelectorAll('.contact-item');
-
-contactItems.forEach(item => {
-    item.addEventListener('click', function(e) {
-        e.preventDefault();
-        const text = this.textContent.trim();
-        
-        // Copy to clipboard
-        navigator.clipboard.writeText(text).then(() => {
-            const originalText = this.innerHTML;
-            this.textContent = 'Copied!';
-            
-            setTimeout(() => {
-                this.innerHTML = originalText;
-            }, 2000);
-        });
-    });
-});
 
 // ==================== REVEAL ON SCROLL ==================== 
 const revealElements = document.querySelectorAll('.section-title, .product-card, .discount-section');
