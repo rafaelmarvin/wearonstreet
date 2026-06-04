@@ -12,6 +12,71 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// ==================== VIDEO PLAY/PAUSE CONTROL ==================== 
+const video = document.getElementById('heroVideo');
+const playBtn = document.getElementById('playBtn');
+const muteBtn = document.getElementById('muteBtn');
+const videoContainer = document.querySelector('.video-container');
+
+if (video && playBtn) {
+    const playIcon = playBtn.querySelector('.play-icon');
+    const pauseIcon = playBtn.querySelector('.pause-icon');
+    
+    // Play/Pause toggle
+    playBtn.addEventListener('click', () => {
+        if (video.paused) {
+            video.play();
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+            videoContainer.classList.add('playing');
+        } else {
+            video.pause();
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+            videoContainer.classList.remove('playing');
+        }
+    });
+    
+    // Video click to toggle play/pause
+    video.addEventListener('click', () => {
+        if (video.paused) {
+            video.play();
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+            videoContainer.classList.add('playing');
+        } else {
+            video.pause();
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+            videoContainer.classList.remove('playing');
+        }
+    });
+    
+    // Mute/Unmute toggle
+    if (muteBtn) {
+        const volumeOn = muteBtn.querySelector('.volume-on');
+        const volumeOff = muteBtn.querySelector('.volume-off');
+        
+        muteBtn.addEventListener('click', () => {
+            video.muted = !video.muted;
+            if (video.muted) {
+                volumeOn.style.display = 'none';
+                volumeOff.style.display = 'block';
+            } else {
+                volumeOn.style.display = 'block';
+                volumeOff.style.display = 'none';
+            }
+        });
+    }
+    
+    // Update button state when video ends
+    video.addEventListener('ended', () => {
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+        videoContainer.classList.remove('playing');
+    });
+}
+
 // ==================== NAVBAR STICKY EFFECT ==================== 
 const navbar = document.querySelector('.navbar');
 let lastScrollTop = 0;
@@ -84,7 +149,6 @@ productCards.forEach((card, index) => {
         }, 100);
     });
 });
-
 
 // ==================== REVEAL ON SCROLL ==================== 
 const revealElements = document.querySelectorAll('.section-title, .product-card, .discount-section');

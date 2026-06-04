@@ -20,14 +20,21 @@
         <nav class="nav-container">
             <ul class="nav-links">
                 <li><a href="#home">HOME</a></li>
+                <li class="dropdown">
+                    <a href="#characters" class="dropdown-toggle">CHARACTERS <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="shape-me.html">SHAPE ME</a></li>
+                        <li><a href="burning-jaw.html">BURNING JAW</a></li>
+                        <li><a href="skully-brain.html">SKULLY BRAIN</a></li>
+                        <li><a href="melting-candy.html">MELTING CANDY</a></li>
+                    </ul>
+                </li>
                 <li><a href="#catalog">CATALOG</a></li>
                 <li><a href="#discount">DISCOUNT</a></li>
                 <li><a href="#contact">CONTACT</a></li>
             </ul>
             <div class="logo">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" font-weight="900" fill="white" font-family="Inter Display"><img width="40" height="40" src="/asset/logo.png" alt=""></text>
-                </svg>
+                <img width="40" height="40" src="asset/logo.png" alt="WEARONSTREET Logo">
                 <span>WEARONSTREET</span>
             </div>
             <div class="cart-icon">
@@ -56,9 +63,32 @@
                 </button>
             </div>
         </div>
-        <div class="hero-image">
-            <img src="asset/cover.jpg" alt="Artistic face illustration with eyes">
+        <div class="hero-video">
+    <div class="video-container">
+        <video id="heroVideo" loop playsinline>
+            <source src="asset/opening.MOV" type="video/mp4">
+            <img src="asset/cover.jpg" alt="WEARONSTREET Cover">
+        </video>
+        <button class="play-btn" id="playBtn">
+            <svg class="play-icon" width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M8 5v14l11-7z"/>
+            </svg>
+            <svg class="pause-icon" width="24" height="24" viewBox="0 0 24 24" fill="white" style="display:none;">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+            </svg>
+        </button>
+        <div class="volume-control">
+            <button class="mute-btn" id="muteBtn">
+                <svg class="volume-on" width="20" height="20" viewBox="0 0 24 24" fill="white">
+                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                </svg>
+                <svg class="volume-off" width="20" height="20" viewBox="0 0 24 24" fill="white" style="display:none;">
+                    <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                </svg>
+            </button>
         </div>
+    </div>
+</div>
     </section>
 
     <!-- Catalog Section -->
@@ -67,23 +97,7 @@
         <div class="products-grid">
             <div class="product-card">
                 <div class="product-image">
-                    <img src="/asset/fire.jpg" alt="WEARONSTREET-1 T-shirt">
-                </div>
-                <h3 class="product-name">BURNING JAW</h3>
-                <p class="product-category">T-SHIRT</p>
-                <p class="product-price">RP 188.000</p>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="/asset/melting.jpg" alt="WEARONSTREET-2 T-shirt">
-                </div>
-                <h3 class="product-name">MELTING CANDY</h3>
-                <p class="product-category">T-SHIRT</p>
-                <p class="product-price">RP 188.000</p>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="/asset/shapeme.jpg" alt="WEARONSTREET-3 T-shirt">
+                    <img src="asset/shapeme.jpg" alt="SHAPE ME T-shirt">
                 </div>
                 <h3 class="product-name">SHAPE ME</h3>
                 <p class="product-category">T-SHIRT</p>
@@ -91,9 +105,25 @@
             </div>
             <div class="product-card">
                 <div class="product-image">
-                    <img src="/asset/bone.jpg" alt="WEARONSTREET-4 T-shirt">
+                    <img src="asset/fire.jpg" alt="BURNING JAW T-shirt">
                 </div>
-                <h3 class="product-name">SKULLY BRAIN/h3>
+                <h3 class="product-name">BURNING JAW</h3>
+                <p class="product-category">T-SHIRT</p>
+                <p class="product-price">RP 188.000</p>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="asset/bone.jpg" alt="SKULLY BRAIN T-shirt">
+                </div>
+                <h3 class="product-name">SKULLY BRAIN</h3>
+                <p class="product-category">T-SHIRT</p>
+                <p class="product-price">RP 188.000</p>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="asset/melting.jpg" alt="MELTING CANDY T-shirt">
+                </div>
+                <h3 class="product-name">MELTING CANDY</h3>
                 <p class="product-category">T-SHIRT</p>
                 <p class="product-price">RP 188.000</p>
             </div>
@@ -139,14 +169,12 @@
         <div class="touchpoint-container">
             <div class="touchpoint-card">
                 <p class="touchpoint-text">
-                    We’re always open to talk, collaborate, or just vibe - reach us through any of our platforms.
+                    We're always open to talk, collaborate, or just vibe - reach us through any of our platforms.
                 </p>
                 <div class="touchpoint-footer">
                     <span class="touchpoint-logo">WEARONSTREET</span>
                     <div class="touchpoint-icon">
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" font-weight="900" font-family="Inter Display"><img width="40" height="40" src="/asset/logo.png" alt=""></text>
-                        </svg>
+                        <img width="40" height="40" src="asset/logo.png" alt="">
                     </div>
                 </div>
             </div>
@@ -156,26 +184,20 @@
                     <button 
                         class="contact-item"
                         onclick="window.open('https://wa.me/message/BYUVWK2MYZNMK1', '_blank')">
-                        
                         <span class="contact-icon">📱</span>
                         <span>+62 851-1121-0804</span>
-
                     </button>
                     <button 
                         class="contact-item"
                         onclick="window.open('https://www.instagram.com/wearonstreet_official/', '_blank')">
-
                         <span class="contact-icon">📷</span>
                         <span>INSTA : WEARONSTREET_OFFICIAL</span>
-
                     </button>
                     <button 
                         class="contact-item"
                         onclick="window.open('https://www.tiktok.com/@wearonstreet', '_blank')">
-
                         <span class="contact-icon">🎵</span>
                         <span>TIKTOK : WEARONSTREET</span>
-
                     </button>
                 </div>
             </div>
