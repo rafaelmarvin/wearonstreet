@@ -21,7 +21,8 @@ export async function createClient() {
           );
         } catch {
           // Called from a Server Component where cookies are read-only.
-          // The middleware (middleware.ts) refreshes the session instead.
+          // Route handlers / server actions and the browser client persist
+          // refreshed tokens instead, so this is safe to ignore here.
         }
       },
     },
