@@ -1,0 +1,25 @@
+name: Expire stale orders
+
+# Backstop sweep: releases stock/promo for abandoned pending orders in case a
+# Midtrans webhook was missed. The real-time path is the webhook + /api/payment/sync;
+# this just catches the tail. Vercel Hobby can't run sub-daily crons, so we run it here.
+#
+# Requires two repository secrets (Settings → Secrets and variables → Actions):
+#   SITE_URL     e.g. https://your-app.vercel.app   (no trailing slash)
+#   CRON_SECRET  same value as the CRON_SECRET env var in Vercel
+#
+# Note: GitHub-scheduled runs are best-effort and may be delayed a few minutes.
+
+on:
+  schedule:
+    - cron: "*/15 * * * *" # every 15 minutes
+  workflow_dispatch: {} # allow manual runs from the Actions tab
+
+jobs:
+  expire:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call expire-orders endpoint
+        run: |
+          curl -fsS -X GET "${{ secrets.SITE_URL }}/api/cron/expire-orders" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}"

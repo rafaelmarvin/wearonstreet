@@ -109,9 +109,15 @@ CRON_SECRET=<long random string>
 1. Push this repo to GitHub and import it in Vercel.
 2. Add all env vars above (set `NEXT_PUBLIC_SITE_URL` to the Vercel URL/domain and
    `NEXT_PUBLIC_MIDTRANS_IS_SANDBOX=true` for now).
-3. `vercel.json` already schedules the cron sweep every 10 min. Vercel automatically
-   sends `Authorization: Bearer $CRON_SECRET` to the cron route — just make sure
-   `CRON_SECRET` is set in the project env.
+3. **Order-expiry sweep (backstop).** Vercel **Hobby** can't run sub-daily crons, so
+   the sweep runs from a **GitHub Actions** scheduled workflow (`.github/workflows/expire-orders.yml`,
+   every 15 min). Add two repo secrets (Settings → Secrets and variables → Actions):
+   - `SITE_URL` = your deployed URL, e.g. `https://your-app.vercel.app` (no trailing slash)
+   - `CRON_SECRET` = the same value as the `CRON_SECRET` env var in Vercel
+
+   This is only a safety net — the real-time path is the Midtrans webhook + `/api/payment/sync`.
+   (If you prefer a Vercel-native daily backstop instead, you could add a `vercel.json`
+   with a once-per-day schedule like `0 2 * * *`, which Hobby does allow.)
 4. Update the Midtrans Notification URL + Supabase redirect URLs to the live domain.
 
 ---
