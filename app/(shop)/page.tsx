@@ -58,8 +58,8 @@ export default async function HomePage() {
         <div className="discount-content">
           <h2 className="discount-title">SPECIAL DISCOUNT</h2>
           <p className="discount-description">
-            Exclusive offer for visitors. Use code <strong>WELCOME10</strong> at
-            checkout to get 10% off your first purchase!
+            Shopping online? Enter code <strong>WEARONWEB</strong> at checkout and
+            take 20% off your order. Web exclusive — don&apos;t miss out!
           </p>
           <Link className="btn btn-outline-white" href="/cart">
             SHOP NOW
