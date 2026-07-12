@@ -114,7 +114,16 @@ export interface PromoCode {
   valid_from: string;
   valid_until: string | null;
   is_active: boolean;
+  show_on_home: boolean;
+  home_title: string | null;
+  home_description: string | null;
   created_at: string;
+}
+
+/** The discount banner rendered on the home page (from the featured promo). */
+export interface HomeBanner {
+  title: string;
+  description: string;
 }
 
 // Cart item as stored client-side (localStorage). Prices are re-validated server-side.

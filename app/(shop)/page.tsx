@@ -2,10 +2,14 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 import HeroVideo from "@/components/HeroVideo";
 import { getProducts } from "@/lib/products";
+import { getHomeBanner } from "@/lib/promos";
 import { formatRupiah } from "@/lib/format";
 
 export default async function HomePage() {
-  const { products } = await getProducts();
+  const [{ products }, banner] = await Promise.all([
+    getProducts(),
+    getHomeBanner(),
+  ]);
 
   return (
     <>
@@ -27,9 +31,11 @@ export default async function HomePage() {
             <Link className="btn btn-outline" href="#catalog">
               OUR CATALOG
             </Link>
-            <Link className="btn btn-primary" href="#discount">
-              GET DISCOUNT
-            </Link>
+            {banner && (
+              <Link className="btn btn-primary" href="#discount">
+                GET DISCOUNT
+              </Link>
+            )}
           </div>
         </div>
         <HeroVideo />
@@ -53,19 +59,18 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Discount */}
-      <section className="discount-section" id="discount">
-        <div className="discount-content">
-          <h2 className="discount-title">SPECIAL DISCOUNT</h2>
-          <p className="discount-description">
-            Shopping online? Enter code <strong>WEARONWEB</strong> at checkout and
-            take 20% off your order. Web exclusive — don&apos;t miss out!
-          </p>
-          <Link className="btn btn-outline-white" href="/cart">
-            SHOP NOW
-          </Link>
-        </div>
-      </section>
+      {/* Discount — which promo appears here is set in Admin → Promo Codes */}
+      {banner && (
+        <section className="discount-section" id="discount">
+          <div className="discount-content">
+            <h2 className="discount-title">{banner.title}</h2>
+            <p className="discount-description">{banner.description}</p>
+            <Link className="btn btn-outline-white" href="/cart">
+              SHOP NOW
+            </Link>
+          </div>
+        </section>
+      )}
 
       <Footer />
     </>

@@ -47,6 +47,8 @@ data), but login/checkout/admin need the steps below.
    - `supabase/migrations/0002_functions.sql`
    - `supabase/migrations/0003_seed.sql` (4 products + sizes + sample promos)
    - `supabase/migrations/0004_carts.sql` (server-side carts for the admin "Live Carts" view)
+   - `supabase/migrations/0005_home_banner.sql` (pick which promo shows on the home page)
+   - `supabase/migrations/0006_product_images.sql` (storage bucket for admin image uploads)
 
    > With the CLI: `supabase link` then `supabase db push`.
 3. **Auth settings** (Authentication → Providers → Email): keep "Confirm email" ON.

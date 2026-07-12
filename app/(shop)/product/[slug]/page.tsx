@@ -25,10 +25,12 @@ export default async function ProductPage({
         </div>
 
         <div className="pdp">
+          {/* The product shot (same image as the catalog card) — NOT the character
+              artwork, which lives with the lore below. */}
           <div className="pdp-image">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={product.detail_image_url ?? product.image_url ?? "/asset/logo.png"}
+              src={product.image_url ?? product.detail_image_url ?? "/asset/logo.png"}
               alt={product.name}
             />
           </div>
@@ -46,6 +48,15 @@ export default async function ProductPage({
             {lore && (
               <div className="character-background">
                 <h3>Character Background</h3>
+                {product.detail_image_url && (
+                  <div className="character-art">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={product.detail_image_url}
+                      alt={`${product.name} character artwork`}
+                    />
+                  </div>
+                )}
                 {lore.background.split("\n").map((line, i) => (
                   <p key={i} style={{ marginBottom: 8 }}>
                     {line}
