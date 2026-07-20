@@ -49,6 +49,7 @@ data), but login/checkout/admin need the steps below.
    - `supabase/migrations/0004_carts.sql` (server-side carts for the admin "Live Carts" view)
    - `supabase/migrations/0005_home_banner.sql` (pick which promo shows on the home page)
    - `supabase/migrations/0006_product_images.sql` (storage bucket for admin image uploads)
+   - `supabase/migrations/0007_analytics.sql` (self-hosted web analytics — table + `analytics_report()` for the admin **Analytics** page)
 
    > With the CLI: `supabase link` then `supabase db push`.
 3. **Auth settings** (Authentication → Providers → Email): keep "Confirm email" ON.
@@ -102,6 +103,7 @@ NEXT_PUBLIC_MIDTRANS_CLIENT_KEY=...
 NEXT_PUBLIC_MIDTRANS_IS_SANDBOX=true
 NEXT_PUBLIC_SITE_URL=https://YOUR-DOMAIN     # http://localhost:3000 for dev
 CRON_SECRET=<long random string>
+ANALYTICS_SALT=<long random string>          # secret for the cookieless visitor hash
 ```
 
 ---
@@ -175,6 +177,7 @@ app/
     midtrans/webhook signature verify + idempotent order transition
     cron/expire-orders  Vercel cron safety net
     promo/preview    read-only promo validation for checkout UI
+    analytics/collect  cookieless first-party pageview beacon (writes analytics_events)
   auth/              email confirmation + sign-out
 components/          Navbar, Cart, AddToCart, Checkout, Admin UI, etc.
 lib/                 supabase clients, midtrans, pricing/shipping, types
@@ -192,3 +195,28 @@ legacy/             the original static site (design reference only)
   idempotent. Duplicate/out-of-order notifications can't double-charge or oversell.
 - Keep `SUPABASE_SERVICE_ROLE_KEY`, `MIDTRANS_SERVER_KEY`, and `CRON_SECRET` server-only
   (never `NEXT_PUBLIC_*`).
+
+---
+
+## 11. Built-in analytics (self-hosted)
+
+A Vercel-Analytics-style dashboard at **`/admin → Analytics`**, with **no third-party
+service** — all data lives in your Supabase project (`analytics_events`).
+
+- **Collection:** a tiny cookieless client (`components/AnalyticsTracker.tsx`) beacons
+  each pageview to `/api/analytics/collect`, which parses browser/OS/device and reads
+  the visitor country from the hosting edge header (`x-vercel-ip-country`), filters
+  bots, and inserts the row via the service role. Admin pages are never tracked.
+- **Privacy:** no cookies and no personal data are stored. Visitors are de-duplicated
+  with a **non-reversible daily hash** of IP + User-Agent + `ANALYTICS_SALT` (rotates
+  every UTC day), so you get unique-visitor counts without tracking individuals.
+- **Reporting:** the admin page calls one Postgres function, `analytics_report()`
+  (admin-guarded, `security definer`), which returns totals, a gap-filled timeseries,
+  and top pages/referrers/countries/devices/browsers/OS as a single JSON payload —
+  raw rows never leave the database.
+- **Setup:** run migration `0007_analytics.sql` and set `ANALYTICS_SALT` to any long
+  random string. Country data appears once deployed to Vercel (the geo header is added
+  by the edge; it's absent on `localhost`).
+- **Retention:** events accumulate indefinitely. To prune, run e.g.
+  `delete from analytics_events where created_at < now() - interval '365 days';`
+  (optionally on a schedule).

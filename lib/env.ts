@@ -16,6 +16,10 @@ export const SUPABASE_SERVICE_ROLE_KEY =
 export const MIDTRANS_SERVER_KEY = process.env.MIDTRANS_SERVER_KEY ?? "";
 export const CRON_SECRET = process.env.CRON_SECRET ?? "";
 
+// Secret mixed into the cookieless visitor hash for the built-in analytics.
+// Any long random string; changing it just resets same-day visitor de-duping.
+export const ANALYTICS_SALT = process.env.ANALYTICS_SALT ?? "";
+
 // Midtrans public config.
 export const MIDTRANS_CLIENT_KEY =
   process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY ?? "";

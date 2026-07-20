@@ -10,6 +10,7 @@ type NavItem = NavLink | NavGroup;
 
 const NAV: NavItem[] = [
   { href: "/admin", label: "Dashboard", exact: true, icon: <IconDashboard /> },
+  { href: "/admin/analytics", label: "Analytics", icon: <IconChart /> },
   {
     label: "Order Management",
     icon: <IconClipboard />,
@@ -99,6 +100,17 @@ function IconDashboard() {
       <rect x="14" y="3" width="7" height="7" rx="1.5" />
       <rect x="14" y="14" width="7" height="7" rx="1.5" />
       <rect x="3" y="14" width="7" height="7" rx="1.5" />
+    </svg>
+  );
+}
+
+function IconChart() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M3 3v18h18" />
+      <rect x="7" y="12" width="3" height="5" rx="0.5" />
+      <rect x="12" y="8" width="3" height="9" rx="0.5" />
+      <rect x="17" y="5" width="3" height="12" rx="0.5" />
     </svg>
   );
 }
