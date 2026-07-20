@@ -60,7 +60,6 @@ export default async function AnalyticsPage({
 
   const { views, visitors } = report.totals;
   const perVisitor = visitors > 0 ? (views / visitors).toFixed(1) : "—";
-  const topPage = report.paths[0]?.key ?? "—";
 
   return (
     <div>
@@ -87,12 +86,6 @@ export default async function AnalyticsPage({
           <div className="label">Views / visitor</div>
           <div className="value">{perVisitor}</div>
         </div>
-        <div className="stat-card">
-          <div className="label">Top page</div>
-          <div className="value analytics-stat-path" title={topPage}>
-            {topPage}
-          </div>
-        </div>
       </div>
 
       <div className="card">
@@ -101,17 +94,6 @@ export default async function AnalyticsPage({
       </div>
 
       <div className="analytics-grid">
-        <BreakdownList
-          title="Top pages"
-          keyHeader="Path"
-          items={report.paths}
-          monoKey
-        />
-        <BreakdownList
-          title="Referrers"
-          keyHeader="Source"
-          items={report.referrers}
-        />
         <BreakdownList
           title="Countries"
           keyHeader="Country"
@@ -136,11 +118,6 @@ export default async function AnalyticsPage({
           title="Browsers"
           keyHeader="Browser"
           items={report.browsers}
-        />
-        <BreakdownList
-          title="Operating systems"
-          keyHeader="OS"
-          items={report.os}
         />
       </div>
 
